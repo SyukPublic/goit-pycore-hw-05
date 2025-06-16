@@ -18,7 +18,7 @@ def caching_fibonacci() -> Callable[[int], int]:
     def fibonacci(n: int) -> int:
         """Compute, cache and return the Fibonacci number
 
-        :param n: the value for which the Fibonacci number will be calculated. (int, mandatory)
+        :param n: the value for which the Fibonacci number will be calculated (int, mandatory)
         :return calculated Fibonacci number (Callable)
         """
         if n <= 0:

@@ -125,7 +125,7 @@ def input_error(
     :param value_error_message: value error message (string, optional)
     :param key_error_message: key error message (string, optional)
     :param index_error_message: index error message (string, optional)
-    :return point to the decorator function (Callable)
+    :return exceptions processing function (Callable)
     """
 
     def _input_error(func: Callable):
