@@ -25,7 +25,7 @@ def print_colored(*args) -> None:
 
     :param args: arguments to print (tuple of Fore and strings)
     """
-    if isinstance(args[0], tuple):
+    if len(args) > 0 and isinstance(args[0], tuple):
         color, *strings = args[0]
         print(color + " ".join(strings), Style.RESET_ALL)
     else:
