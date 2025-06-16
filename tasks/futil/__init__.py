@@ -6,6 +6,7 @@ __author__ = 'Roman'
 
 from .file import (
     get_absolute_path,
+    read_text_file_by_line,
     load_text_file_data,
     load_json_file_data,
     write_json_file_data,
@@ -15,6 +16,7 @@ from .file import (
 
 __all__ = [
     'get_absolute_path',
+    'read_text_file_by_line',
     'load_text_file_data',
     'load_json_file_data',
     'write_json_file_data',
