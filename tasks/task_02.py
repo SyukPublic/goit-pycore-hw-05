@@ -5,7 +5,8 @@ Core functions for task 02
 """
 
 import re
-from typing import Callable, Iterator
+from collections.abc import Iterator
+from typing import Callable
 
 
 REAL_NUMBER_FIND_SPACES_BOUNDARIES_PATTERN = re.compile(r' [-+]?\d*\.?\d+? ')

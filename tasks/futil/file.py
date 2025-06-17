@@ -5,7 +5,8 @@ Functions for works with the files and directories
 """
 
 import json
-from typing import Optional, Any, Union, Iterator
+from collections.abc import Iterator
+from typing import Optional, Any, Union
 from pathlib import Path
 
 
@@ -31,7 +32,7 @@ def get_absolute_path(path: Union[Path, str], current_dir: Optional[Union[Path, 
     # Construct an absolute path and return
     return (current_dir if current_dir is not None else Path.cwd()) / path
 
-def read_text_file_by_line(file_path: Path) -> Iterator[str]:
+def read_text_file_by_line(file_path: Path) -> Iterator[tuple[int, str]]:
     """Return the next line of the given text file
 
     :param file_path: specified text file path (Path, mandatory)
@@ -48,10 +49,12 @@ def read_text_file_by_line(file_path: Path) -> Iterator[str]:
 
     # Open the specified file as a text file
     try:
+        row_number: int = 0
         with open(file_path, 'tr', encoding='utf-8') as fh:
-            # Read and return the file lines
+            # Read and return the file lines with the line index
             for line in fh:
-                yield line
+                yield row_number, line.rstrip()
+                row_number += 1
     except UnicodeDecodeError:
         # The file data is corrupted
         # Raise exception to the upper level
@@ -71,7 +74,7 @@ def load_text_file_data(file_path: Path, remove_empty_lines: bool = False) -> li
     """
 
     # Read the file data
-    file_content = [line for line in read_text_file_by_line(file_path) if not remove_empty_lines or line.strip()]
+    file_content = [line for _, line in read_text_file_by_line(file_path) if not remove_empty_lines or line]
     # Return the file data
     return file_content
 
